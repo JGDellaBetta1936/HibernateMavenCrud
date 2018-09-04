@@ -33,9 +33,25 @@ public class AppMain {
 
 	public static void main(String[] args) {
 		log.info(".......Hibernate Maven Example.......");
-		insertRows();
-		updateRows();
-		deleteRows();
+		int inputArg =   Integer.parseInt(args[0]);
+		switch (inputArg) {
+		case 1:
+			insertRows();
+			break;
+		case 2:
+			updateRows();
+			break;
+		case 3:
+			deleteRows();
+			break;
+		case 9:
+			insertRows();
+			insertRows();
+			deleteRows();
+			default:
+				log.info("Input args incorrect.  Allowable values are:\n1=Insert\n2=update\n3=deleted\n9=All.\n\nYou entered->" + args[0]);
+		}
+
 		System.exit(0);
 	}
 	

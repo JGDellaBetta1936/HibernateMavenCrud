@@ -35,7 +35,7 @@ public class AppMain {
 
 	public static void main(String[] args) {
 		log.info(".......Hibernate Maven Example.......");
-		int inputArg =   Integer.parseInt(args[0]);
+		int inputArg =   Integer.parseInt(args[0] );
 		switch (inputArg) {
 		case 1:
 			if (insertRows()) {
@@ -84,8 +84,8 @@ public class AppMain {
 		sessionObj.beginTransaction();
 		for(int i = 101; i <= 115; i++) {
 			userObj = new User(i);
-			userObj.setUsername("Editor Updated" + i);
-			userObj.setCreatedBy("Administrator Updated");
+			userObj.setUsername("Editor Updated all good" + i);
+			userObj.setCreatedBy("Administrator Updated all good");
 			userObj.setCreatedDate(new Date());
 			sessionObj.saveOrUpdate(userObj);
 		}		

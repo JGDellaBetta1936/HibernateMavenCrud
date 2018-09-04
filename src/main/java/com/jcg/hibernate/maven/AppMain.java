@@ -11,6 +11,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import jdk.internal.jline.internal.Log;
+
 public class AppMain {
 
 	static User userObj;
@@ -36,26 +38,31 @@ public class AppMain {
 		int inputArg =   Integer.parseInt(args[0]);
 		switch (inputArg) {
 		case 1:
-			insertRows();
-			break;
+			if (insertRows()) {
+				break;
+			}
+	
 		case 2:
-			updateRows();
-			break;
+			if (updateRows()) {
+				break;
+			}
+	
 		case 3:
-			deleteRows();
+			if (deleteRows()) {
+			}
 			break;
 		case 9:
 			insertRows();
 			insertRows();
 			deleteRows();
 		default:
-			log.info("Input args incorrect.  Allowable values are:\n1=Insert\n2=update\n3=deleted\n9=All\n\nYou entered->" + args[0]);
+			log.info("Input args incorrect.  Allowable values are:\n1=Insert\n2=Update\n3=Deleted\n9=All\n\nYou entered->" + args[0]);
 		}
 
 		System.exit(0);
 	}
 	
-	private static void insertRows() {
+	private static boolean insertRows() {
 		sessionObj = buildSessionFactory().openSession();
 		sessionObj.beginTransaction();
 		for(int i = 101; i <= 115; i++) {
@@ -69,9 +76,10 @@ public class AppMain {
 		sessionObj.getTransaction().commit();
 		sessionObj.close();
 		log.info("inserts completed.");
+		return true;
 	}
 	
-	private static void updateRows() {
+	private static boolean updateRows() {
 		sessionObj = buildSessionFactory().openSession();
 		sessionObj.beginTransaction();
 		for(int i = 101; i <= 115; i++) {
@@ -84,8 +92,9 @@ public class AppMain {
 		sessionObj.getTransaction().commit();
 		sessionObj.close();
 		log.info("Updates completed.");
+		return true;
 	}
-	private static void deleteRows() {
+	private static boolean deleteRows() {
 		sessionObj = buildSessionFactory().openSession();
 		sessionObj.beginTransaction();
 		for(int i = 101; i <= 115; i++) {
@@ -96,6 +105,7 @@ public class AppMain {
 		sessionObj.getTransaction().commit();
 		sessionObj.close();
 		log.info("Deletes completed.");
+		return true;
 	}
 	
 }

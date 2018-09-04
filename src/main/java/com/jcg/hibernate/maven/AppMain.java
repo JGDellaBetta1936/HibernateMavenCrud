@@ -48,8 +48,8 @@ public class AppMain {
 			insertRows();
 			insertRows();
 			deleteRows();
-			default:
-				log.info("Input args incorrect.  Allowable values are:\n1=Insert\n2=update\n3=deleted\n9=All.\n\nYou entered->" + args[0]);
+		default:
+			log.info("Input args incorrect.  Allowable values are:\n1=Insert\n2=update\n3=deleted\n9=All\n\nYou entered->" + args[0]);
 		}
 
 		System.exit(0);

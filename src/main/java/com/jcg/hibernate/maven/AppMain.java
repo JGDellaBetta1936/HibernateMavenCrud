@@ -2,16 +2,12 @@ package com.jcg.hibernate.maven;
 
 import java.util.Date;
 
-import javax.swing.text.DefaultEditorKit.InsertTabAction;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-
-import jdk.internal.jline.internal.Log;
 
 public class AppMain {
 
@@ -38,25 +34,22 @@ public class AppMain {
 		int inputArg =   Integer.parseInt(args[0] );
 		switch (inputArg) {
 		case 1:
-			if (insertRows()) {
+			insertRows() ;
 				break;
-			}
-	
 		case 2:
-			if (updateRows()) {
+			updateRows();
 				break;
-			}
-	
 		case 3:
-			if (deleteRows()) {
-			}
+			deleteRows();
 			break;
 		case 9:
 			insertRows();
 			insertRows();
 			deleteRows();
+			break;
 		default:
 			log.info("Input args incorrect.  Allowable values are:\n1=Insert\n2=Update\n3=Deleted\n9=All\n\nYou entered->" + args[0]);
+			break;
 		}
 
 		System.exit(0);
